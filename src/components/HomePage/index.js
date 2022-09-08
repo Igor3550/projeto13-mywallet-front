@@ -6,8 +6,10 @@ import {
   Footer,
   AddButton
 } from './style'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
+  const navigate = useNavigate();
 
   function handleExit (){
     console.log('Exit')
