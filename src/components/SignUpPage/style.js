@@ -16,6 +16,13 @@ export const Page = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const Title = styled.text`
   font-family: 'Saira Stencil One', cursive;
@@ -23,7 +30,7 @@ export const Title = styled.text`
   color: #fff;
   margin: 20px;
 `;
-export const EmailField = styled.input`
+export const InputField = styled.input`
   width: 90%;
   height: 60px;
   font-size: 20px;
@@ -45,7 +52,7 @@ export const PasswordField = styled.input`
   margin-top: 10px;
   padding: 10px;
 `;
-export const LoginButton = styled.button`
+export const SignUpButton = styled.button`
   width: 90%;
   height: 45px;
   background-color: #A328D6;
@@ -56,7 +63,7 @@ export const LoginButton = styled.button`
   color: #fff;
   margin-top: 10px;
 `;
-export const SignUpButton = styled.button`
+export const LoginButton = styled.button`
   width: 90%;
   height: 45px;
   background-color: #8C11BE;

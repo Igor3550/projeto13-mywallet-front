@@ -52,9 +52,6 @@ const GlobalStyle = createGlobalStyle`
   *{
   box-sizing: border-box;
   }
-  p, h1, div, span {
-    font-family: 'Lexend Deca', sans-serif;
-  }
 
 `;
  
