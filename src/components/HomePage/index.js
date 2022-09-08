@@ -25,11 +25,11 @@ const HomePage = () => {
         <ExtractArea />
       </Body>
       <Footer>
-        <AddButton>
+        <AddButton onClick={() => navigate('/entry')}>
           <ion-icon name="add-circle-outline"></ion-icon>
           <p>Nova entrada</p>
         </AddButton>
-        <AddButton>
+        <AddButton onClick={() => navigate('/output')}>
           <ion-icon name="remove-circle-outline"></ion-icon>
           <p>Nova saída</p>
         </AddButton>

@@ -8,6 +8,8 @@ import {
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import HomePage from './components/HomePage';
+import EntryPage from './components/EntryPage';
+import OutputPage from './components/OutputPage';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/sign-up' element={<SignUpPage />} />
           <Route path='/home' element={<HomePage />} />
+          <Route path='/entry' element={<EntryPage />} />
+          <Route path='/output' element={<OutputPage />} />
         </Routes>
       </BrowserRouter>
     </Container>
