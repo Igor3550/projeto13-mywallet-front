@@ -7,9 +7,12 @@ import {
   AddButton
 } from './style'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const [extractList, setExtractList] = useState([])
 
   function handleExit (){
     console.log('Exit')
