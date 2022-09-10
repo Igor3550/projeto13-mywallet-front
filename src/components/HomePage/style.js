@@ -33,20 +33,14 @@ export const Body = styled.div`
   justify-content: center;
   width: 100%;
   height: 65%;
-  `;
-export const ExtractArea = styled.div`
-  background-color: #fff;
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-`; 
+`;
 export const Footer = styled.div`
   width: 100%;
   height: 20%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 10px 0 20px 0;
 `;
 export const AddButton = styled.div`
   width: 48%;

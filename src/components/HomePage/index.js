@@ -2,17 +2,44 @@ import {
   Container,
   Header,
   Body,
-  ExtractArea,
   Footer,
   AddButton
 } from './style'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import ExtractArea from '../ExtractArea';
 
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const [extractList, setExtractList] = useState([])
+  /*
+  {
+    date: 08/09/2022,
+    description: "lanche",
+    price: 22.00
+  }
+  */
+
+  const [extractList, setExtractList] = useState([
+    {
+      date: '08/09/2022',
+      description: "lanche",
+      price: 22.00,
+      type: 'output'
+    },
+    {
+      date: '08/09/2022',
+      description: "uber",
+      price: 22.00,
+      type: 'entry'
+    },
+    {
+      date: '03/09/2022',
+      description: "uber",
+      price: 21.00,
+      type: 'entry'
+    }
+  ])
 
   function handleExit (){
     console.log('Exit')
@@ -25,7 +52,7 @@ const HomePage = () => {
         <ion-icon onClick={handleExit} name="exit-outline"></ion-icon>
       </Header>
       <Body>
-        <ExtractArea />
+        <ExtractArea extractList={extractList} />
       </Body>
       <Footer>
         <AddButton onClick={() => navigate('/entry')}>
