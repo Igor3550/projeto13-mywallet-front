@@ -59,7 +59,6 @@ const HomePage = () => {
   }, [])
 
   function handleExit (){
-    console.log('Exit');
     localStorage.setItem('mywalletUser', JSON.stringify())
     navigate('/login');
   }

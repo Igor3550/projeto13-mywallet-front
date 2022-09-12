@@ -31,6 +31,7 @@ export const Container = styled.div`
 export const ExtractField = styled.div`
   width: 100%;
   height: 85%;
+  overflow-y: scroll;
 `;
 
 export const ExtractItem = styled.div`

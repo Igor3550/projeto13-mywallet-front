@@ -15,8 +15,6 @@ const ExtractArea = ({ extractList }) => {
 
   const { user } = useContext(UserContext)
 
-  console.log(extractList)
-
   let balance = 0;
   let balanceDecision = 'positive';
   extractList.forEach(element => {
@@ -54,7 +52,7 @@ const ExtractArea = ({ extractList }) => {
         {extractList.length === 0 ? <span><h1>Não há registros de entrada ou saída</h1></span> : 
           extractList.map((item) => {
             return(
-              <ExtractItem type={item.type} key={item.id}>
+              <ExtractItem type={item.type} key={item._id}>
                 <div>
                   <p className='date'>{dayjs(item.createdAt).format('DD/MM')}</p>
                   <p className='description'>{item.description}</p>
