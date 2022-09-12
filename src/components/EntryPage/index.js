@@ -22,21 +22,22 @@ const EntryPage = () => {
 
     const body = {
       description,
-      price,
+      price: price.replace(',', '.'),
       type: 'input'
     }
 
     const promise = createExtract(body, user.token);
     promise.catch((error) => {
       if(error.response.status === 401){
-        navigate('/login')
+        alert(`Ocorreu um erro: ${error.message}`);
+        navigate('/login');
       }else{
         alert(`Ocorreu um erro: ${error.message}`);
       }
       console.log(error)
     })
-    promise.then((res) => {
-      navigate('/home');
+    promise.then(() => {
+      navigate('/');
     })
   }
   return (

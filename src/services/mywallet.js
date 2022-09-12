@@ -12,7 +12,7 @@ function createHeaders(token) {
   return config;
 }
 
-function signup (body) {
+function signUp (body) {
   const promise = axios.post(`${BASE_URL}/sign-up`, body);
   return promise;
 }
@@ -34,9 +34,16 @@ function getExtract (token) {
   return promise;
 }
 
+function deleteExtract (extractId, token){
+  const config = createHeaders(token);
+  const promise = axios.delete(`${BASE_URL}/extract/${extractId}`, config);
+  return promise;
+}
+
 export {
-  signup,
+  signUp,
   login,
   createExtract,
-  getExtract
+  getExtract,
+  deleteExtract
 }

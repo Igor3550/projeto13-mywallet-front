@@ -53,6 +53,10 @@ export const ExtractItem = styled.div`
   }
   .price {
     color: ${props => props.type === 'input' ? '#03AC00' : '#C70000'};
+    padding-right: 15px;
+  }
+  .deleteButton {
+    color: #c6c6c6;
   }
 `;
 

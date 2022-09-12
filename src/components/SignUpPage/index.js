@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Container,
   Page,
@@ -8,6 +8,7 @@ import {
   LoginButton,
   SignUpButton
 } from './style'
+import {signUp} from '../../services/mywallet'
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,18 @@ const SignUpPage = () => {
       password
     }
 
-    console.log(body)
+    const promise = signUp(body);
+    promise.catch((error) => {
+      if(error.response.status === 409){
+        alert(`Erro: E-mail já cadastrado!`);
+      }else{
+        alert(`Ocorreu um erro inesperado: ${error.message}`);
+      }
+    })
+    promise.then(() => {
+      alert('Cadastro completo!');
+      navigate('/login');
+    })
   }
  
   return (
@@ -69,7 +81,7 @@ const SignUpPage = () => {
           />
           <SignUpButton>Cadastrar</SignUpButton>
         </form>
-        <LoginButton onClick={() => navigate('/')}>Já tem uma conta? Entre agora!</LoginButton>
+        <LoginButton onClick={() => navigate('/login')}>Já tem uma conta? Entre agora!</LoginButton>
       </Page>
     </Container>
   )

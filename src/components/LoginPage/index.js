@@ -23,7 +23,7 @@ const LoginPage = () => {
     if(localStorage.getItem('mywalletUser') !== null && localStorage.getItem('mywalletUser') !== 'undefined'){
       const mywalletUser = JSON.parse(localStorage.getItem('mywalletUser'))
       setUser(mywalletUser);
-      navigate('/home');
+      navigate('/');
     }
   }, [])
 
@@ -47,7 +47,7 @@ const LoginPage = () => {
     promise.then((res) => {
       setUser(res.data)
       localStorage.setItem('mywalletUser', JSON.stringify(res.data))
-      navigate('/home');
+      navigate('/');
     })
 
   }

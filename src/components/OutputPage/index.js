@@ -23,7 +23,7 @@ const OutputPage = () => {
     const body = {
       type: "output",
       description,
-      price
+      price: price.replace(',', '.')
     }
 
     const promise = createExtract(body, user.token)
@@ -35,8 +35,8 @@ const OutputPage = () => {
         alert(`Ocorreu um erro: ${error.message}`);
       }
     })
-    promise.then((res) => {
-      navigate('/home');
+    promise.then(() => {
+      navigate('/');
     })
   }
   return (
