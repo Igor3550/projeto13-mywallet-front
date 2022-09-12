@@ -7,13 +7,25 @@ import {
   SignUpButton
 } from './style'
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { login } from '../../services/mywallet'
+import UserContext from '../../contexts/UserContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const { setUser } = useContext(UserContext)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if(localStorage.getItem('mywalletUser') !== null && localStorage.getItem('mywalletUser') !== 'undefined'){
+      const mywalletUser = JSON.parse(localStorage.getItem('mywalletUser'))
+      setUser(mywalletUser);
+      navigate('/home');
+    }
+  }, [])
 
   function handleSubmit (e) {
     e.preventDefault();
@@ -23,7 +35,21 @@ const LoginPage = () => {
       password
     }
 
-    console.log(body)
+    const promise = login(body);
+    promise.catch((error) => {
+      if(error.response.status === 401){
+        alert('Usuário e/ou senha incorreto(s)');
+      }else{
+        alert(`Ocorreu um erro inesperado: ${error.message}`);
+      }
+      console.log(error);
+    })
+    promise.then((res) => {
+      setUser(res.data)
+      localStorage.setItem('mywalletUser', JSON.stringify(res.data))
+      navigate('/home');
+    })
+
   }
 
   return (

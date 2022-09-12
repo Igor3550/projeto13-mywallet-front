@@ -4,15 +4,40 @@ import {
   InputField,
   SaveButton
 } from './style'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { createExtract } from '../../services/mywallet';
+import { useNavigate } from 'react-router-dom';
 
 const OutputPage = () => {
+  const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
 
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const body = {
+      type: "output",
+      description,
+      price
+    }
+
+    const promise = createExtract(body, user.token)
+    promise.catch((error) => {
+      if(error.response.status === 401){
+        alert(`Ocorreu um erro: ${error.message}`);
+        navigate('/login');
+      }else{
+        alert(`Ocorreu um erro: ${error.message}`);
+      }
+    })
+    promise.then((res) => {
+      navigate('/home');
+    })
   }
   return (
     <Container>

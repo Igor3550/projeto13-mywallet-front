@@ -4,15 +4,40 @@ import {
   InputField,
   SaveButton
 } from './style'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { createExtract } from '../../services/mywallet';
+import { useNavigate } from 'react-router-dom';
 
 const EntryPage = () => {
+  const navigate = useNavigate()
+
+  const { user } = useContext(UserContext)
 
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const body = {
+      description,
+      price,
+      type: 'input'
+    }
+
+    const promise = createExtract(body, user.token);
+    promise.catch((error) => {
+      if(error.response.status === 401){
+        navigate('/login')
+      }else{
+        alert(`Ocorreu um erro: ${error.message}`);
+      }
+      console.log(error)
+    })
+    promise.then((res) => {
+      navigate('/home');
+    })
   }
   return (
     <Container>
@@ -20,6 +45,7 @@ const EntryPage = () => {
       <form onSubmit={handleSubmit}>
         <InputField 
           placeholder='Valor'
+          type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
@@ -30,7 +56,7 @@ const EntryPage = () => {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-        <SaveButton>Salvar entrada</SaveButton>
+        <SaveButton type='submit'>Salvar entrada</SaveButton>
       </form>
     </Container>
   )

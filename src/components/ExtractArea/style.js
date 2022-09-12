@@ -52,7 +52,7 @@ export const ExtractItem = styled.div`
     padding-left: 10px;
   }
   .price {
-    color: ${props => props.type === 'entry' ? '#03AC00' : '#C70000'};
+    color: ${props => props.type === 'input' ? '#03AC00' : '#C70000'};
   }
 `;
 
